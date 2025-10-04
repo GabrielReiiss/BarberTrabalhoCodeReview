@@ -1,0 +1,38 @@
+cff-version: 1.0.1
+message: Please cite this software using these metadata.
+title: Barber Flow
+authors:
+  - family-names: Pereira de Jesus
+    given-names: Albert
+  - family-names: Modesto Couto
+    given-names: Arthur
+  - family-names: Carvalho Denucci Mercado
+    given-names: Bernardo
+  - family-names: Figueiredo Cayres Burdignon
+    given-names: Gabriel
+  - family-names: Santos Ribeiro
+    given-names: Matheus
+  - family-names: Augusto Ribeiro Mazzoli
+    given-names: Vinicius
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Maia Filho
+    given-names: Danilo de Quadros
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Aramuni
+    given-names: João Paulo Carneiro
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Marques
+    given-names: Ramon Lacerda
+keywords:
+  - PHP
+  - Laravel
+  - MaryUI
+  - Barbershop website
+  - Whatsapp integration
+repository-code: https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti3-9577100-barber-flow.git
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2025-06-19
