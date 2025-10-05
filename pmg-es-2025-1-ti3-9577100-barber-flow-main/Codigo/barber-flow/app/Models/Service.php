@@ -34,3 +34,21 @@ class Service extends Model
         return $this->hasMany(Favorite::class);
     }
 }
+
+/*
+COMENTÁRIO:
+🔍 Sugestão de Melhoria: Os métodos de relacionamento 
+(como appointments(), favorites(), etc.) não possuem 
+blocos de documentação (PHPDoc).
+
+Benefícios da Mudança: Adicionar PHPDoc ajuda as IDEs 
+a entenderem o tipo de retorno, habilitando o autocompletar 
+e a análise estática de código, o que acelera o desenvolvimento e previne bugs.
+
+@return \Illuminate\Database\Eloquent\Relations\HasMany
+📌 Sugestão de Implementação:
+public function appointments()
+{
+    return $this->hasMany(Appointment::class);
+}
+*/

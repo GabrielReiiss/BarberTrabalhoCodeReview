@@ -66,3 +66,29 @@ class User extends Authenticatable
         return $this->access_level === 1;
     }
 }
+
+/*
+COMENTÁRIO:
+🔍 Sugestão de Melhoria: O método is_admin() usa o "número mágico" 
+1 para verificar o nível de acesso ($this->access_level === 1). 
+Isso torna o código menos legível e mais difícil de manter.
+
+Benefícios da Mudança: Se o significado de 1 mudar, você terá 
+que alterá-lo em vários lugares. Usar uma constante ou um 
+Enum centraliza essa definição.
+
+📌 Sugestão de Implementação (PHP 8.1+ Enums):
+enum UserAccessLevel: int {
+    case Client = 0;
+    case Admin = 1;
+}
+use App\Enums\UserAccessLevel;
+protected $casts = [
+    // ...
+    'access_level' => UserAccessLevel::class,
+];
+public function isAdmin(): bool // convenção de nome camelCase
+{
+    return $this->access_level === UserAccessLevel::Admin;
+}
+*/

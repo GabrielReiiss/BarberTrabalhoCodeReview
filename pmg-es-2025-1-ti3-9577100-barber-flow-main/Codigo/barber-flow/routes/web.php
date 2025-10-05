@@ -80,3 +80,39 @@ Route::middleware('auth')->group(function(){
 
 });
 
+/*
+COMENTÁRIO 1:
+🔍 Sugestão de Melhoria: A rota /auth/google/callback contém 
+toda a lógica de autenticação com o Google. Isso repete o 
+problema já visto no arquivo api.php e também ignora a existência 
+do GoogleController criado anteriormente.
+
+Benefícios da Mudança: Centralizar a lógica no GoogleController 
+(e no GoogleAuthService sugerido na Parte 1) evita duplicação 
+de código e mantém o arquivo de rotas limpo.
+
+📌 Sugestão de Implementação: Remover a closure e apontar a rota para o controller:
+Remover a closure gigante
+Route::get('/auth/google/callback', function () { ... });
+Apontar para o controller já existente
+Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
+
+
+
+
+COMENTÁRIO 2:
+🔍 Sugestão de Melhoria: A rota de logout (/logout) está definida com 
+Route::get. Ações que modificam o estado do servidor (como login, logout, 
+exclusão) devem sempre usar verbos HTTP como POST, PUT ou DELETE.
+
+Benefícios da Mudança: Usar GET para logout cria uma vulnerabilidade de 
+Cross-Site Request Forgery (CSRF). Navegadores podem pré-carregar links, 
+e um simples link malicioso em outro site poderia deslogar o seu usuário. 
+Usar POST com a proteção CSRF do Laravel previne isso.
+
+📌 Sugestão de Implementação:
+Mudar de:
+Route::get('/logout', Logout::class);
+Para:
+Route::post('/logout', Logout::class)->name('logout');
+*/

@@ -50,3 +50,28 @@
         </div>
     </div>
 </div>
+
+<!--
+COMENTÁRIO:
+🔍 Sugestão de Melhoria: O componente tem múltiplos 
+atributos de eventos JavaScript inline (ondragenter, 
+ondragleave, ondragover, ondrop). Isso mistura a 
+estrutura HTML com o comportamento de forma excessiva.
+
+Benefícios da Mudança: Abstrair essa lógica para uma 
+diretiva AlpineJS (que já parece estar no projeto) ou 
+para um arquivo JS separado deixaria o HTML mais limpo 
+e declarativo, além de facilitar a manutenção da lógica 
+de drag-and-drop.
+
+📌 Sugestão de Implementação (com AlpineJS):
+Criar um componente AlpineJS que encapsule toda a lógica de drag-and-drop.
+A view seria simplificada para algo como:
+<div x-data="calendarDayDropTarget" 
+     @dragenter.prevent="onEnter" 
+     @dragleave.prevent="onLeave" 
+     @dragover.prevent 
+     @drop.prevent="onDrop">
+     ...
+</div>
+-->

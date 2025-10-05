@@ -47,3 +47,22 @@ return [
         'whatsapp_from' => env('TWILIO_WHATSAPP_FROM'),
     ],
 ];
+
+/*
+COMENTÁRIO:
+🔍 Sugestão de Melhoria: O arquivo services.php (e outros arquivos 
+de configuração) dependem diretamente de variáveis de ambiente (ex: 
+env('GOOGLE_CLIENT_ID')). Se uma dessas variáveis essenciais não for 
+definida no arquivo .env, a aplicação pode falhar de maneiras inesperadas em produção.
+
+Benefícios da Mudança: Adicionar uma camada de validação que garanta 
+que todas as variáveis de ambiente necessárias estão presentes durante 
+a inicialização da aplicação torna o sistema mais robusto e à prova 
+de erros de configuração.
+
+📌 Sugestão de Implementação: Uma abordagem simples é verificar as 
+variáveis no AppServiceProvider ou em um provedor de serviço dedicado:
+if (config('services.google.client_id') === null) {
+    throw new \Exception('A variável de ambiente GOOGLE_CLIENT_ID é obrigatória.');
+}
+*/

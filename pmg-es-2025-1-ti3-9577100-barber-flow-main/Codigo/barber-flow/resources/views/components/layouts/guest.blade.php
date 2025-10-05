@@ -116,3 +116,16 @@
     @livewireScripts
 </body>
 </html>
+
+
+<!-- 
+COMENTÁRIO:
+🔍 Sugestão de Melhoria: Há um grande bloco de código 
+JavaScript (a animação p5.js) diretamente no arquivo Blade.
+
+Benefícios da Mudança: Mover este código para um arquivo 
+.js separado (ex: resources/js/particle-animation.js) e 
+importá-lo no app.js principal melhora a organização, a 
+legibilidade da view e permite que o navegador faça cache 
+desse script, melhorando o tempo de carregamento em visitas futuras.
+-->

@@ -127,3 +127,22 @@
     <div class="footer"></div>
 </body>
 </html>
+
+<!-- 
+COMENTÁRIO:
+🔍 Sugestão de Melhoria: A view está cheia de lógica PHP, como 
+formatação de datas (\Carbon\Carbon::parse(...)) e verificação 
+de status (!empty($appointment['confirmed_at'])). Uma view deve 
+ser o mais "burra" possível, apenas exibindo dados já preparados.
+
+Benefícios da Mudança: Facilita o trabalho de designers que não 
+conhecem PHP, simplifica a leitura da view e move a lógica para 
+o backend, onde ela pode ser testada.
+
+📌 Sugestão de Implementação:
+No Model Appointment.php, criar um accessor para o status:
+public function getStatusTextAttribute(): string
+{
+    return $this->confirmed_at ? 'Confirmado' : 'Pendente';
+}
+-->

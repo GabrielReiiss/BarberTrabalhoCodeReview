@@ -69,3 +69,56 @@ Route::post('/webhook/whatsapp', function (Request $request) {
 
     return response($msg, 200)->header('Content-Type', 'text/xml');
 });
+
+/*
+COMENTÁRIO 1:
+🔍 Sugestão de Melhoria: Toda a lógica para o webhook do WhatsApp 
+está dentro de uma função de closure no arquivo de rotas. Arquivos 
+de rota devem apenas definir endpoints e delegar a ação para 
+controllers, nunca conter a lógica de negócio em si.
+
+Benefícios da Mudança: Melhora drasticamente a organização e o reuso. 
+Permite o cache de rotas do Laravel (php artisan route:cache), que 
+não funciona com closures. Facilita os testes, pois a lógica pode 
+ser testada em uma classe de controller isoladamente.
+
+📌 Sugestão de Implementação:
+Criar um novo controller: php artisan make:controller Api\\WhatsAppWebhookController.
+Mover toda a lógica da closure para um método handle neste controller.
+Atualizar a rota em api.php:
+use App\Http\Controllers\Api\WhatsAppWebhookController;
+Route::post('/webhook/whatsapp', [WhatsAppWebhookController::class, 'handle']);
+
+
+
+
+COMENTÁRIO 2:
+🔍 Sugestão de Melhoria: Seguindo a sugestão anterior, mesmo dentro de 
+um controller, a lógica do webhook viola o Princípio da Responsabilidade 
+Única (SRP). Ela formata dados, consulta o banco, atualiza registros, envia 
+e-mails e monta uma resposta XML.
+
+Benefícios da Mudança: Sugiro criar uma classe WhatsAppWebhookService 
+que receba os dados do webhook e orquestre as ações. Isso desacopla a 
+lógica de negócio do framework, tornando-a mais testável, manutenível e clara.
+
+📌 Sugestão de Implementação: O controller ficaria muito simples:
+public function handle(Request $request) {
+    $responseMessage = $this->webhookService->process($request->all());
+    return response($responseMessage, 200)->header('Content-Type', 'text/xml');
+}
+
+
+
+
+COMENTÁRIO 3:
+🔍 Sugestão de Melhoria: O bloco de código que manipula a string do número 
+de telefone é complexo e pode ser frágil.
+
+Benefícios da Mudança: Extrair essa lógica para uma classe dedicada ou um 
+helper (ex: PhoneNumberFormatter) centraliza a responsabilidade, permite 
+reuso e facilita a criação de testes unitários específicos para essa formatação.
+
+📌 Sugestão de Implementação: Criar uma classe App\Utils\PhoneNumberFormatter 
+com um método estático formatForDb($whatsappPhoneString).
+*/

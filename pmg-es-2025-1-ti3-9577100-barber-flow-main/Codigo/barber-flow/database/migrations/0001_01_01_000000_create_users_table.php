@@ -50,3 +50,18 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
     }
 };
+
+/*
+COMENTÁRIO:
+🔍 Sugestão de Melhoria: A coluna access_level como 
+tinyInteger está diretamente ligada ao "magic number" 
+que comentei no Model User.
+
+Benefícios da Mudança: Para melhorar a legibilidade do 
+banco de dados e alinhar com a sugestão do Enum, poderíamos 
+usar uma coluna de string.
+
+📌 Sugestão de Implementação:
+$table->tinyInteger('access_level')->default(0);
+$table->string('access_level')->default('client');
+*/
